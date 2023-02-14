@@ -208,18 +208,30 @@
       "message-box"
     ).scrollHeight;
   }
-
-//   Predefined responses
-
+//   Predefined responses---------------------------------------------------------------------------
   function addResponseMsg(msg) {
     var div = document.createElement("div");
     // Custom messages here:
     if(msg === "hello world"){
         div.innerHTML = "<div class='chat-message-received'>" + "this is hello world" + "</div>";
     }
-    if(msg.includes("albert campos?")){
+    if(msg.includes("albert campos")){
         div.innerHTML = "<div class='chat-message-received'>" + "He's Jack's son" + "</div>";
     }
+    if(msg.includes("reid jonkers")){
+        div.innerHTML = "<div class='chat-message-received'>" + "He's the CLO of EasyExpunctions, an arrest record clearing company." + "</div>";
+    }
+    if(msg.includes("nour") || msg.includes("nour awad")){
+        div.innerHTML = "<div class='chat-message-received'>" + "He's the COO of EasyExpunctions, an arrest record clearing company." + "</div>";
+    }
+    if(msg.includes("nour") || msg.includes("nour awad")){
+        div.innerHTML = "<div class='chat-message-received'>" + "He's the COO of EasyExpunctions, an arrest record clearing company." + "</div>";
+    }
+    if(msg.includes("who is your creator")){
+        div.innerHTML = "<div class='chat-message-received'>" + "Jack is my creator." + "</div>";
+    }
+    
+    
   //------------------------------------------------------------------------------------------------  
     div.className = "chat-message-div";
     document.getElementById("message-box").appendChild(div);
