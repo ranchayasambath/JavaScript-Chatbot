@@ -11,7 +11,7 @@
     </div>
     <div class="line"></div>
     <div class="input-div">
-      <input class="input-message" name="message" type="text" id="message" placeholder="Type your message ..." />
+      <input class="input-message" name="message" type="text" id="message" placeholder=" Ask a question ..." />
       <button class="input-send" onclick="send()">
         <svg style="width:24px;height:24px">
           <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z" />
@@ -20,12 +20,15 @@
     </div>
   </div>
   <style>
+    body{
+    font-weight: bolder;
+    }
   @media (min-width: 450px) {
         .main-card {
           width: 96%;
           max-width: 400px;
           height: calc(100% - 32px) !important;
-          border-radius: 8px !important;
+          border-radius: 2.5em !important;
           max-height: 600px;
         margin: 16px!important;
         }
@@ -153,11 +156,13 @@
     animation-iteration-count: 1;
     animation-timing-function: ease-in;
     animation-duration: 100ms;
-    color: white;
+    /* color: white;*/
+     color: black;  
     border-radius: 8px 8px 8px 2px;
-    background-color: rgb(75, 204, 86);
+    /* background-color: rgb(75, 204, 86); */
+    background-color: rgb(236, 236, 236);
   }
-  
+
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -182,36 +187,71 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
+  .bigbox{
+width:270px;
+height:160px;
+border: 1px solid black;
+display:flex;
+justify-content:center;
+align-items:center;
+border-radius:1em;
+}
+.mediumbox{
+width:250px;
+height:150px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+.smallbox{
+border: 1px solid red;
+height:75px;
+width:250px;
+border-radius:.5em;
+margin:2px;
+}
   </style>
   <script>
-    var running = false;
-  function send() {
-    if (running == true) return;
-    var msg = document.getElementById("message").value;
-    if (msg == "") return;
-    running = true;
-    addMsg(msg);
-    //DELEAY MESSAGE RESPOSE Echo
-    window.setTimeout(addResponseMsg, 1000, msg);
-  }
-  function addMsg(msg) {
-    var div = document.createElement("div");
-    div.innerHTML =
-      "<span style='flex-grow:1'></span><div class='chat-message-sent'>" +
-      msg +
-      "</div>";
-    div.className = "chat-message-div";
-    document.getElementById("message-box").appendChild(div);
-    //SEND MESSAGE TO API
-    document.getElementById("message").value = "";
-    document.getElementById("message-box").scrollTop = document.getElementById(
-      "message-box"
-    ).scrollHeight;
-  }
-//   Predefined responses---------------------------------------------------------------------------
-  function addResponseMsg(msg) {
-    var div = document.createElement("div");
-    // Custom messages here:
+  var running = false;
+function send() {
+  if (running == true) return;
+  var msg = document.getElementById("message").value;
+  if (msg == "") return;
+  running = true;
+  addMsg(msg);
+  //DELEAY MESSAGE RESPOSE Echo
+  window.setTimeout(addResponseMsg, 1000, msg);
+}
+function addMsg(msg) {
+  var div = document.createElement("div");
+  div.innerHTML =
+    "<span style='flex-grow:1'></span><div class='chat-message-sent'>" +
+    msg +
+    "</div>";
+  div.className = "chat-message-div";
+  document.getElementById("message-box").appendChild(div);
+  //SEND MESSAGE TO API
+  document.getElementById("message").value = "";
+  document.getElementById("message-box").scrollTop = document.getElementById(
+    "message-box"
+  ).scrollHeight;
+}
+function addResponseMsg(msg) {
+  var div = document.createElement("div");
+    // div.innerHTML = "<div class='chat-message-received'>" + msg + "</div>";
+    // let box = '<div class="chat-message-received"><div class="bigbox"><div class="mediumbox"><div class="smallbox"></div><div class="smallbox"</div><div class="smallbox"></div></div></div></div>"'
+  // Custom messages here:
+    if(msg === "Hello ! I'm a virtual assistant for JACK & JONES, here to show you the latest men's styles and more."){
+      div.innerHTML = "<div class='chat-message-received'>Hello ! I'm a virtual assistant for JACK & JONES, here to show you the latest men's styles and more.</div>";
+    }
+    if(msg === "So, what can I help you with today?"){
+      div.innerHTML = "<div class='chat-message-received'>So, what can I help you with today?</div>";
+    }
+    if(msg === '<div class="chat-message-received"><div class="bigbox"><div class="mediumbox"><a href="google.com" class="smallbox"></a><a href="google.com" class="smallbox"></a><a href="google.com" class="smallbox"></a></div></div></div>')
+      {
+      div.innerHTML = '<div class="chat-message-received"><div class="bigbox"><div class="mediumbox"><a href="google.com" class="smallbox"></a><a href="google.com" class="smallbox"></a><a href="google.com" class="smallbox"></a></div></div></div>';
+      }
     if(msg === "hello world"){
         div.innerHTML = "<div class='chat-message-received'>" + "this is hello world" + "</div>";
     }
@@ -224,40 +264,36 @@
     if(msg.includes("nour") || msg.includes("nour awad")){
         div.innerHTML = "<div class='chat-message-received'>" + "He's the COO of EasyExpunctions, an arrest record clearing company." + "</div>";
     }
-    if(msg.includes("nour") || msg.includes("nour awad")){
-        div.innerHTML = "<div class='chat-message-received'>" + "He's the COO of EasyExpunctions, an arrest record clearing company." + "</div>";
-    }
-    if(msg.includes("who is your creator")){
-        div.innerHTML = "<div class='chat-message-received'>" + "Jack is my creator." + "</div>";
-    }
-    
-    
-  //------------------------------------------------------------------------------------------------  
-    div.className = "chat-message-div";
-    document.getElementById("message-box").appendChild(div);
-    document.getElementById("message-box").scrollTop = document.getElementById(
-      "message-box"
-    ).scrollHeight;
-    running = false;
+  div.className = "chat-message-div";
+  document.getElementById("message-box").appendChild(div);
+  document.getElementById("message-box").scrollTop = document.getElementById(
+    "message-box"
+  ).scrollHeight;
+  running = false;
+}
+document.getElementById("message").addEventListener("keyup", function (event) {
+  if (event.keyCode === 13){
+    event.preventDefault();
+    send();
   }
-  document.getElementById("message").addEventListener("keyup", function (event) {
-    if (event.keyCode === 13) {
-      event.preventDefault();
-      send();
-    }
-  });
+});
+let runOnce = false;
    document.getElementById("chatbot_toggle").onclick = function () {
-      if (document.getElementById("chatbot").classList.contains("collapsed")) {
-        document.getElementById("chatbot").classList.remove("collapsed")
-        document.getElementById("chatbot_toggle").children[0].style.display = "none"
-        document.getElementById("chatbot_toggle").children[1].style.display = ""
-        // Greeting message once user click on chat button:
-      //   >>>setTimeout(addResponseMsg,1000,"Hi")<<<
-      }
-      else {
-        document.getElementById("chatbot").classList.add("collapsed")
-        document.getElementById("chatbot_toggle").children[0].style.display = ""
-        document.getElementById("chatbot_toggle").children[1].style.display = "none"
+    if (document.getElementById("chatbot").classList.contains("collapsed")) {
+      document.getElementById("chatbot").classList.remove("collapsed")
+      document.getElementById("chatbot_toggle").children[0].style.display = "none"
+      document.getElementById("chatbot_toggle").children[1].style.display = ""
+      if(!runOnce){
+      setTimeout(addResponseMsg,1000,"Hello ! I'm a virtual assistant for JACK & JONES, here to show you the latest men's styles and more.")
+      setTimeout(addResponseMsg,2000,"So, what can I help you with today?")
+      setTimeout(addResponseMsg,3000, '<div class="chat-message-received"><div class="bigbox"><div class="mediumbox"><a href="google.com" class="smallbox"></a><a href="google.com" class="smallbox"></a><a href="google.com" class="smallbox"></a></div></div></div>')
+      runOnce=true;
       }
     }
+    else {
+      document.getElementById("chatbot").classList.add("collapsed")
+      document.getElementById("chatbot_toggle").children[0].style.display = ""
+      document.getElementById("chatbot_toggle").children[1].style.display = "none"
+    }
+  }
   </script>
